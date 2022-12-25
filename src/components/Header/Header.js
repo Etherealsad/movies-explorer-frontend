@@ -1,10 +1,8 @@
 import "./Header.css";
 import { Link, NavLink } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
-import accountImg from '../../images/icon__COLOR_icon-main.svg'
+import accountImg from '../../images/icon__COLOR_icon-main.svg';
 
-function Header({ loggedIn, isSideBarOpened, handleSideBarState }) {
-  const isSmallScreen = useMediaQuery({ query: "(max-width: 785px)" });
+function Header({ loggedIn, isSideBarOpened, handleSideBarState, screenWidth }) {
 
   return (
     <header className="header">
@@ -16,7 +14,7 @@ function Header({ loggedIn, isSideBarOpened, handleSideBarState }) {
               <></>
             ) : (
               <>
-                {isSmallScreen ? (
+                {(screenWidth < 800) ? (
                   <button className="header__sidebar-button" onClick={handleSideBarState} />
                 ) : (
                   <nav className="header__navigation header__navigation_logged-in">
@@ -46,10 +44,10 @@ function Header({ loggedIn, isSideBarOpened, handleSideBarState }) {
                           Аккаунт
                           <div className="header__link-image-block">
                             <img 
-                              className="header__link-image"
-                              src={accountImg}
-                              alt='значок аккаунта'
-                              />
+                            className="header__link-image"
+                            src={accountImg}
+                            alt='значок аккаунта'
+                            />
                           </div>
                         </NavLink>
                       </li>
